@@ -19,7 +19,7 @@ jobs:
         node-version: 18.x
         cache: 'npm'
     - run: npm ci
-    - run: npm run build
+    - run: npm run build --prod
 
     - name: Setup AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -29,4 +29,4 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Deploy to S3
-      run: aws s3 sync dist/ s3://my-angular-s3-app
+      run: aws s3 sync dist/angular-s3-app s3://my-angular-s3-app
